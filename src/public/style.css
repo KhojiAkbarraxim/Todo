@@ -1,0 +1,156 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Segoe UI', sans-serif;
+	background: #f0f2f5;
+	color: #333;
+	min-height: 100vh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 60px 16px;
+}
+
+.container {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	padding: 36px;
+	width: 100%;
+	max-width: 520px;
+}
+
+h1 {
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-bottom: 24px;
+	color: #111;
+}
+
+/* Add form */
+.add-form {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 28px;
+}
+
+.add-form input {
+	flex: 1;
+	padding: 10px 14px;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	font-size: 0.95rem;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+.add-form input:focus {
+	border-color: #4f8ef7;
+}
+
+.add-form button {
+	padding: 10px 20px;
+	background: #4f8ef7;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 0.95rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.add-form button:hover {
+	background: #3a78e0;
+}
+
+.todo-list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.todo-list li {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 14px;
+	border: 1px solid #ececec;
+	border-radius: 8px;
+	background: #fafafa;
+	transition: background 0.2s;
+}
+
+.todo-list li:hover {
+	background: #f0f4ff;
+}
+
+.todo-list li.done .task-text {
+	text-decoration: line-through;
+	color: #aaa;
+}
+
+.todo-list .empty {
+	text-align: center;
+	color: #aaa;
+	font-size: 0.9rem;
+	padding: 20px;
+	border: none;
+	background: none;
+}
+
+.task-text {
+	flex: 1;
+	font-size: 0.95rem;
+	word-break: break-word;
+}
+
+.inline {
+	display: flex;
+	align-items: center;
+}
+
+.check-btn {
+	width: 30px;
+	height: 30px;
+	border: 2px solid #4f8ef7;
+	border-radius: 50%;
+	background: none;
+	color: #4f8ef7;
+	font-size: 0.85rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s, color 0.2s;
+}
+
+.check-btn:hover {
+	background: #4f8ef7;
+	color: #fff;
+}
+
+.delete-btn {
+	width: 28px;
+	height: 28px;
+	border: none;
+	border-radius: 6px;
+	background: none;
+	color: #ccc;
+	font-size: 0.9rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s, color 0.2s;
+}
+
+.delete-btn:hover {
+	background: #ffe0e0;
+	color: #e53935;
+}

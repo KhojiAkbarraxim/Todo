@@ -1,0 +1,51 @@
+<?php
+require 'db.php';
+
+$result = $conn->query("SELECT * FROM todos ORDER BY created_at DESC");
+$todos  = $result->fetch_all(MYSQLI_ASSOC);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>My Todos</h1>
+
+  <form action="add.php" method="POST" class="add-form">
+    <input type="text" name="task" placeholder="What needs to be done?" required autofocus>
+    <button type="submit">Add</button>
+  </form>
+
+  <ul class="todo-list">
+    <?php if (empty($todos)): ?>
+      <li class="empty">No tasks yet. Add one above!</li>
+    <?php endif; ?>
+
+    <?php foreach ($todos as $todo): ?>
+      <li class="<?= $todo['is_done'] ? 'done' : '' ?>">
+        <form action="toggle.php" method="POST" class="inline">
+          <input type="hidden" name="id" value="<?= $todo['id'] ?>">
+          <button type="submit" class="check-btn" title="Toggle done">
+            <?= $todo['is_done'] ? '✓' : '○' ?>
+          </button>
+        </form>
+
+        <span class="task-text"><?= htmlspecialchars($todo['task']) ?></span>
+
+        <form action="delete.php" method="POST" class="inline">
+          <input type="hidden" name="id" value="<?= $todo['id'] ?>">
+          <button type="submit" class="delete-btn" title="Delete">✕</button>
+        </form>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
+
+</body>
+</html>
