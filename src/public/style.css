@@ -154,3 +154,66 @@ h1 {
 	background: #ffe0e0;
 	color: #e53935;
 }
+
+.edit-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #f4f6f8;
+}
+
+.edit-card {
+	width: 100%;
+	max-width: 420px;
+	background: white;
+	padding: 30px;
+	border-radius: 16px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.edit-card h1 {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.edit-card label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+.edit-card input[type="text"] {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-size: 16px;
+}
+
+.edit-actions {
+	margin-top: 20px;
+	display: flex;
+	gap: 10px;
+}
+
+.edit-actions button,
+.cancel-btn {
+	flex: 1;
+	text-align: center;
+	padding: 12px;
+	border-radius: 10px;
+	border: none;
+	text-decoration: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.edit-actions button {
+	background: blue;
+	color: white;
+}
+
+.cancel-btn {
+	background: #e5e7eb;
+	color: #111827;
+}

@@ -1,8 +1,17 @@
 <?php
-require 'db.php';
+$pdo = new PDO("sqlite:/data/database.db");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$result = $conn->query("SELECT * FROM todos ORDER BY created_at DESC");
-$todos  = $result->fetch_all(MYSQLI_ASSOC);
+$pdo->exec("
+CREATE TABLE IF NOT EXISTS todos (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  task TEXT NOT NULL,
+  is_done INTEGER DEFAULT 0
+)
+");
+
+$stmt = $pdo->query("SELECT * FROM todos ORDER BY id DESC");
+$todos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,19 +38,24 @@ $todos  = $result->fetch_all(MYSQLI_ASSOC);
 
     <?php foreach ($todos as $todo): ?>
       <li class="<?= $todo['is_done'] ? 'done' : '' ?>">
+
         <form action="toggle.php" method="POST" class="inline">
           <input type="hidden" name="id" value="<?= $todo['id'] ?>">
-          <button type="submit" class="check-btn" title="Toggle done">
+          <button type="submit" class="check-btn">
             <?= $todo['is_done'] ? '✓' : '○' ?>
           </button>
         </form>
 
-        <span class="task-text"><?= htmlspecialchars($todo['task']) ?></span>
+        <span class="task-text">
+          <?= htmlspecialchars($todo['task']) ?>
+        </span>
 
         <form action="delete.php" method="POST" class="inline">
           <input type="hidden" name="id" value="<?= $todo['id'] ?>">
-          <button type="submit" class="delete-btn" title="Delete">✕</button>
+          <button type="submit" class="delete-btn">✕</button>
+          <a href="edit.php?id=<?= $todo['id'] ?>">Edit</a>
         </form>
+
       </li>
     <?php endforeach; ?>
   </ul>

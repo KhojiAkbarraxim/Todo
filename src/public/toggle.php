@@ -1,16 +1,18 @@
 <?php
-require 'db.php';
+$pdo = new PDO("sqlite:/data/database.db");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = (int)($_POST['id'] ?? 0);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $id = (int) $_POST["id"];
 
-    if ($id > 0) {
-        $stmt = $conn->prepare("UPDATE todos SET is_done = NOT is_done WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->close();
-    }
+    // flip current value
+    $stmt = $pdo->prepare("UPDATE todos SET is_done = NOT is_done WHERE id = :id");
+
+    $stmt->execute([
+        ":id" => $id
+    ]);
 }
 
 header("Location: index.php");
 exit;
+?>
