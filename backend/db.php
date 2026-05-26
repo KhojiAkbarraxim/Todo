@@ -1,4 +1,4 @@
-q<?php
+<?php
 $pdo = new PDO('sqlite:/app/todos.db');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
