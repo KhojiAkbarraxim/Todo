@@ -2,7 +2,6 @@ services:
   backend:
     build: ./backend
   
-
   frontend:
     image: nginx:alpine
     ports:
