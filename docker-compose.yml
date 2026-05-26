@@ -1,4 +1,4 @@
-qservices:
+services:
   backend:
     build: ./backend
   
