@@ -1,13 +1,21 @@
 services:
   backend:
     build: ./backend
-  
+
   frontend:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - '80:80'
+      - '443:443'
     volumes:
       - ./frontend:/usr/share/nginx/html
-      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./certbot/www:/var/www/certbot
+      - ./certs:/etc/letsencrypt
     depends_on:
       - backend
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certs:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
