@@ -26,8 +26,11 @@ jobs:
       - name: Wait
         run: sleep 10
 
-      - name: Test site
-        run: curl -I http://localhost:3000 || curl -I http://localhost:80
+      - name: Test frontend
+        run: curl -f http://localhost:80
+
+      - name: Test backend
+        run: curl -f http://localhost:8000
 
       - name: Stop containers
         if: always()
